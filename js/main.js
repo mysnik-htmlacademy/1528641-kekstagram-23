@@ -1,0 +1,5 @@
+const getSomethin = function() {
+
+};
+
+getSomethin();
