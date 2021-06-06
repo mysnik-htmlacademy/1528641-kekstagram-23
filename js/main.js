@@ -13,7 +13,11 @@ const randomGet = function(min, max) {
 };
 
 const stringCheckLen = function(checkString, maxLen){
-  // TODO implement
+  if (checkString.length <= maxLen){
+    return true;
+  }
+
+  return false;
 };
 
 // NOTE this invokations using for pass linter check
