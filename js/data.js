@@ -91,21 +91,20 @@ const createComment = (newId) => ({
   name: getRandomArrayElement(NAMES),
 });
 
-const similarUsers = new Array(SIMILAR_USER_COUNT).fill(null).map((currElem, currIdx) => createUser(currIdx + 1));
+const populateComments = function (users) {
+  let commentIdxCurrent = 1;
 
-const populateComments = function () {
-  let commentIdxCurrent = 0;
-
-  for (let idx = 0; idx < SIMILAR_USER_COUNT; idx++) {
+  for (let idx = 0; idx < users.length; idx++) {
     const commentsCount = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
 
     for (let commentIdx = 0; commentIdx < commentsCount; commentIdx++) {
-      similarUsers[idx].comments.push(createComment(commentIdxCurrent));
+      users[idx].comments.push(createComment(commentIdxCurrent));
       commentIdxCurrent++;
     }
   }
 };
 
-populateComments();
+const similarUsers = new Array(SIMILAR_USER_COUNT).fill(null).map((currElem, currIdx) => createUser(currIdx + 1));
+populateComments(similarUsers);
 
 export {similarUsers};
