@@ -12,14 +12,11 @@ const getRandomNumber = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
-
 const checkString = function(str, maxLen){
   return str.length <= maxLen;
 };
 
-// eslint-disable-next-line arrow-body-style
-const getRandomArrayElement = (elements) => {
-  return elements[_.random(0, elements.length - 1)];
-};
+const getRandomArrayElement = (elements) =>
+  elements[_.random(0, elements.length - 1)];
 
 export {getRandomNumber, getRandomArrayElement, checkString};

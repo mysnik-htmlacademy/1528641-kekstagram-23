@@ -76,27 +76,20 @@ const LIKE_MAX = 200;
 const COMMENTS_MIN = 1;
 const COMMENTS_MAX = 5;
 
+const createUser = () => ({
+  id: '',
+  url: '',
+  description: getRandomArrayElement(DESCRIPTIONS),
+  likes: getRandomNumber(LIKE_MIN, LIKE_MAX),
+  comments: [],
+});
 
-// eslint-disable-next-line arrow-body-style
-const createUser = () => {
-  return {
-    id: '',
-    url: '',
-    description: getRandomArrayElement(DESCRIPTIONS),
-    likes: getRandomNumber(LIKE_MIN, LIKE_MAX),
-    comments: [],
-  };
-};
-
-// eslint-disable-next-line arrow-body-style
-const createComment = (newId) => {
-  return {
-    id: newId,
-    avatar: `img/avatar-${getRandomNumber(AVATAR_ID_MIN, AVATAR_ID_MAX)}.svg`,
-    userMessage: getRandomArrayElement(USER_MESSAGES),
-    name: getRandomArrayElement(NAMES),
-  };
-};
+const createComment = (newId) => ({
+  id: newId,
+  avatar: `img/avatar-${getRandomNumber(AVATAR_ID_MIN, AVATAR_ID_MAX)}.svg`,
+  userMessage: getRandomArrayElement(USER_MESSAGES),
+  name: getRandomArrayElement(NAMES),
+});
 
 const similarUsers = new Array(SIMILAR_USER_COUNT).fill(null).map(() => createUser());
 
