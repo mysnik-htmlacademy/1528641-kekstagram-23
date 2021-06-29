@@ -21,3 +21,5 @@ const checkString = function(str, maxLen){
 const getRandomArrayElement = (elements) => {
   return elements[_.random(0, elements.length - 1)];
 };
+
+export {getRandomNumber, getRandomArrayElement, checkString};

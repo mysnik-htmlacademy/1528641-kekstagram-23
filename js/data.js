@@ -1,3 +1,5 @@
+import {getRandomArrayElement, getRandomNumber} from './util.js';
+
 const USER_MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо.',
@@ -98,17 +100,22 @@ const createComment = (newId) => {
 
 const similarUsers = new Array(SIMILAR_USER_COUNT).fill(null).map(() => createUser());
 
+const populateComments = function () {
+  let commentIdxCurrent = 0;
 
-let commentIdxCurrent = 0;
+  for (let idx = 0; idx < SIMILAR_USER_COUNT; idx++) {
+    similarUsers[idx].id = idx + 1;
+    similarUsers[idx].url = `photos/${idx + 1}.jpg`;
 
-for (let idx = 0; idx < SIMILAR_USER_COUNT; idx++){
-  similarUsers[idx].id = idx + 1;
-  similarUsers[idx].url = `photos/${idx + 1}.jpg`;
+    const commentsCount = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
 
-  const commentsCount = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
-
-  for (let commentIdx = 0; commentIdx < commentsCount; commentIdx++) {
-    similarUsers[idx].comments.push(createComment(commentIdxCurrent));
-    commentIdxCurrent++;
+    for (let commentIdx = 0; commentIdx < commentsCount; commentIdx++) {
+      similarUsers[idx].comments.push(createComment(commentIdxCurrent));
+      commentIdxCurrent++;
+    }
   }
-}
+};
+
+populateComments();
+
+export {similarUsers};
