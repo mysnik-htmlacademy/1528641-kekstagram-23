@@ -76,9 +76,9 @@ const LIKE_MAX = 200;
 const COMMENTS_MIN = 1;
 const COMMENTS_MAX = 5;
 
-const createUser = () => ({
-  id: '',
-  url: '',
+const createUser = (newId) => ({
+  id: newId,
+  url: `photos/${newId}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomNumber(LIKE_MIN, LIKE_MAX),
   comments: [],
@@ -87,19 +87,16 @@ const createUser = () => ({
 const createComment = (newId) => ({
   id: newId,
   avatar: `img/avatar-${getRandomNumber(AVATAR_ID_MIN, AVATAR_ID_MAX)}.svg`,
-  userMessage: getRandomArrayElement(USER_MESSAGES),
+  message: getRandomArrayElement(USER_MESSAGES),
   name: getRandomArrayElement(NAMES),
 });
 
-const similarUsers = new Array(SIMILAR_USER_COUNT).fill(null).map(() => createUser());
+const similarUsers = new Array(SIMILAR_USER_COUNT).fill(null).map((currElem, currIdx) => createUser(currIdx + 1));
 
 const populateComments = function () {
   let commentIdxCurrent = 0;
 
   for (let idx = 0; idx < SIMILAR_USER_COUNT; idx++) {
-    similarUsers[idx].id = idx + 1;
-    similarUsers[idx].url = `photos/${idx + 1}.jpg`;
-
     const commentsCount = getRandomNumber(COMMENTS_MIN, COMMENTS_MAX);
 
     for (let commentIdx = 0; commentIdx < commentsCount; commentIdx++) {
